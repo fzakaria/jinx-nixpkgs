@@ -1,1 +1,1 @@
-{"version":3,"file":"turbovnc.ts","sources":["../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/programs/turbovnc.nix"],"names":[],"mappings":";;;;;;;;;;;;;;eAEA;;;;;8BAQc;SAEd;;8BACY;;iCAER;;mCAAoB;;wDAEgB,QAAA,2CAAU;;oCAChC;;2BAEI;;;;;4BAqBR,QAAA,sCAAS,gEAA8B;;mCAYjD;;qCAAS"}
+{"version":3,"file":"turbovnc.ts","sources":["../../../nixpkgs/nixos/modules/programs/turbovnc.nix"],"names":[],"mappings":";;;;;;;;;;;;;;eAEA;;;;;8BAQc;SAEd;;8BACY;;iCAER;;mCAAoB;;wDAEgB,QAAA,2CAAU;;oCAChC;;2BAEI;;;;;4BAqBR,QAAA,sCAAS,gEAA8B;;mCAYjD;;qCAAS"}

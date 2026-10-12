@@ -1,1 +1,1 @@
-{"version":3,"file":"klogd.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/services/logging/klogd.nix"],"names":[],"mappings":";;;;;;;eAAA;;;SAEA;;6BACY;sBACJ,QAAA,uDAAuB,CAAE,YAAW,SAAQ,YAAW"}
+{"version":3,"file":"klogd.ts","sources":["../../../../nixpkgs/nixos/modules/services/logging/klogd.nix"],"names":[],"mappings":";;;;;;;eAAA;;;SAEA;;6BACY;sBACJ,QAAA,uDAAuB,CAAE,YAAW,SAAQ,YAAW"}

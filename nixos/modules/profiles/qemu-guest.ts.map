@@ -1,1 +1,1 @@
-{"version":3,"file":"qemu-guest.ts","sources":["../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/profiles/qemu-guest.nix"],"names":[],"mappings":";;;;;;;;;eAGA;;SAEA;;2BACE;;+BAAK;;gDAAgC;UACnC;UACA;UACA;UACA;UACA;UACA;UACA;UACA;;uCAE0B,CAC1B,kBACA,kBACA,cACA"}
+{"version":3,"file":"qemu-guest.ts","sources":["../../../nixpkgs/nixos/modules/profiles/qemu-guest.nix"],"names":[],"mappings":";;;;;;;;;eAGA;;SAEA;;2BACE;;+BAAK;;gDAAgC;UACnC;UACA;UACA;UACA;UACA;UACA;UACA;UACA;;uCAE0B,CAC1B,kBACA,kBACA,cACA"}

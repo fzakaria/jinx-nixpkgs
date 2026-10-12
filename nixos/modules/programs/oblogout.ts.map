@@ -1,1 +1,1 @@
-{"version":3,"file":"oblogout.ts","sources":["../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/programs/oblogout.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;SAOA;;6BAEY;sBACJ,QAAA,uDAAuB,CAAE,YAAW,cACtC"}
+{"version":3,"file":"oblogout.ts","sources":["../../../nixpkgs/nixos/modules/programs/oblogout.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;SAOA;;6BAEY;sBACJ,QAAA,uDAAuB,CAAE,YAAW,cACtC"}

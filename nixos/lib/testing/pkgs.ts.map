@@ -1,1 +1,1 @@
-{"version":3,"file":"pkgs.ts","sources":["../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/testing/pkgs.nix"],"names":[],"mappings":";;;;;;;;;;eAAA;;;;;SAMA;;6BACW;;gCAEP;;+BAAQ;;gCAEH,QAAA,wCAAgB,0DACjB;;;iCAGO"}
+{"version":3,"file":"pkgs.ts","sources":["../../../nixpkgs/nixos/lib/testing/pkgs.nix"],"names":[],"mappings":";;;;;;;;;;eAAA;;;;;SAMA;;6BACW;;gCAEP;;+BAAQ;;gCAEH,QAAA,wCAAgB,0DACjB;;;iCAGO"}

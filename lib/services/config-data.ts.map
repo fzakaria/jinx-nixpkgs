@@ -1,1 +1,1 @@
-{"version":3,"file":"config-data.ts","sources":["../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/services/config-data.nix"],"names":[],"mappings":";;;;;;;;;;eAGA;;;SAKA;;;;;iCAMc;;WAEd;;gCACY;;oCACK,mCAAS;;sCACV;qCACG,QAAA,mCAAmB;yBAalB;kCAUF,QAAA,+CAAmB,QAAA,6CAAY,qBAAY"}
+{"version":3,"file":"config-data.ts","sources":["../../nixpkgs/lib/services/config-data.nix"],"names":[],"mappings":";;;;;;;;;;eAGA;;;SAKA;;;;;iCAMc;;WAEd;;gCACY;;oCACK,mCAAS;;sCACV;qCACG,QAAA,mCAAmB;yBAalB;kCAUF,QAAA,+CAAmB,QAAA,6CAAY,qBAAY"}

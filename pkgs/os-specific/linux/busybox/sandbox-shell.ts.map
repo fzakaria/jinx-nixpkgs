@@ -1,1 +1,1 @@
-{"version":3,"file":"sandbox-shell.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/linux/busybox/sandbox-shell.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;SAQO,QAAA,8CAyBL,WAxBA;;;;mBAIgB;OAoBV,QAAA,+CAA0C,YAApB,wDAA0B,QAAA,qDAAwB,6DAAoB"}
+{"version":3,"file":"sandbox-shell.ts","sources":["../../../../nixpkgs/pkgs/os-specific/linux/busybox/sandbox-shell.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;SAQO,QAAA,8CAyBL,WAxBA;;;;mBAIgB;OAoBV,QAAA,+CAA0C,YAApB,wDAA0B,QAAA,qDAAwB,6DAAoB"}

@@ -1,1 +1,1 @@
-{"version":3,"file":"no-clone.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/system/activation/no-clone.nix"],"names":[],"mappings":";;;;;;;;;;eAAA;;;;SAIA;;2BACE;;+BAAK;;+BAAO;;kCAAc,qCAAW,IAAE;;;;oCACtB,qCAAW,qBAAE;sCACX,qCAAW"}
+{"version":3,"file":"no-clone.ts","sources":["../../../../nixpkgs/nixos/modules/system/activation/no-clone.nix"],"names":[],"mappings":";;;;;;;;;;eAAA;;;;SAIA;;2BACE;;+BAAK;;+BAAO;;kCAAc,qCAAW,IAAE;;;;oCACtB,qCAAW,qBAAE;sCACX,qCAAW"}

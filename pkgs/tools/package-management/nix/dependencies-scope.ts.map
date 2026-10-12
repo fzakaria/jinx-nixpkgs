@@ -1,1 +1,1 @@
-{"version":3,"file":"dependencies-scope.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/package-management/nix/dependencies-scope.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;;uCASiB,mDAA0B,CAAE;SAE1C,QAAA,yDACD,6FAIA;;;yBAI0C,QAAnC,qBAAY,uDAAmB"}
+{"version":3,"file":"dependencies-scope.ts","sources":["../../../../nixpkgs/pkgs/tools/package-management/nix/dependencies-scope.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;;uCASiB,mDAA0B,CAAE;SAE1C,QAAA,yDACD,6FAIA;;;yBAI0C,QAAnC,qBAAY,uDAAmB"}

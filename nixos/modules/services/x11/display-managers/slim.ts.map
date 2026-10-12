@@ -1,1 +1,1 @@
-{"version":3,"file":"slim.ts","sources":["../../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/services/x11/display-managers/slim.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;;SASA;;6BAEY;sBACP,gEAAsB,CAAE,YAAW,WAAU,kBAAiB,UAAS"}
+{"version":3,"file":"slim.ts","sources":["../../../../../nixpkgs/nixos/modules/services/x11/display-managers/slim.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;;SASA;;6BAEY;sBACP,gEAAsB,CAAE,YAAW,WAAU,kBAAiB,UAAS"}

@@ -1,1 +1,1 @@
-{"version":3,"file":"4.1.2.ts","sources":["../../../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/4.1.2.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;;2CAWqB,mCAAS;;WACpB;YACC;;SAIX,4BAAO,mDAAc;;;;;;;eAQT;WACJ;YACC;mCACO"}
+{"version":3,"file":"4.1.2.ts","sources":["../../../../../../nixpkgs/pkgs/data/sgml+xml/schemas/xml-dtd/docbook/4.1.2.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;;2CAWqB,mCAAS;;WACpB;YACC;;SAIX,4BAAO,mDAAc;;;;;;;eAQT;WACJ;YACC;mCACO"}

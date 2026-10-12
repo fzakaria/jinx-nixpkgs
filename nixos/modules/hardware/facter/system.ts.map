@@ -1,1 +1,1 @@
-{"version":3,"file":"system.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/hardware/facter/system.nix"],"names":[],"mappings":";;;;;;;;;eAAA;;;;;SAMA;;6BAEE;;+BACK,QAAA,+CAGC,YAD6C,QAAvC,wBAAkC,sEACrC,YAAS,yBAAkC,oEAEhD;;wCACoB,QAAA,2CAAiB"}
+{"version":3,"file":"system.ts","sources":["../../../../nixpkgs/nixos/modules/hardware/facter/system.nix"],"names":[],"mappings":";;;;;;;;;eAAA;;;;;SAMA;;6BAEE;;+BACK,QAAA,+CAGC,YAD6C,QAAvC,wBAAkC,sEACrC,YAAS,yBAAkC,oEAEhD;;wCACoB,QAAA,2CAAiB"}
